@@ -1,0 +1,297 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 26rem;
+  --font-heading: var(--font-outfit), sans-serif;
+  --font-sans: var(--font-inter), sans-serif;
+  --font-luxury-serif: var(--font-cormorant), "Playfair Display", Georgia, serif;
+  --color-accent: #c5a059;
+  --color-light: #e3c283;
+}
+
+.font-heading {
+  font-family: var(--font-outfit), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@property --theme-accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #c5a059;
+}
+
+@property --theme-light {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e3c283;
+}
+
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+  /* Core Luxury Brand Palette Fallbacks — Ensures rich colors render immediately on all mobile devices and pages */
+  --theme-accent: #c5a059;
+  --theme-accent-rgb: 197, 160, 89;
+  --theme-light: #dfc79b;
+  --theme-glow-1: rgba(197, 160, 89, 0.16);
+  --theme-glow-2: rgba(227, 194, 131, 0.10);
+  --theme-glow-3: rgba(180, 130, 70, 0.11);
+  transition: --theme-accent 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              --theme-light 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Dynamic Brand Theme Binding — Smoothly interpolates across hero slide transitions across the entire website */
+.text-\[\#c5a059\],
+.card\:text-\[\#c5a059\],
+.hover\:text-\[\#c5a059\]:hover,
+.group:hover .group-hover\:text-\[\#c5a059\] {
+  color: var(--theme-accent) !important;
+  transition: color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.bg-\[\#c5a059\],
+.hover\:bg-\[\#c5a059\]:hover,
+.group:hover .group-hover\:bg-\[\#c5a059\] {
+  background-color: var(--theme-accent) !important;
+  transition: background-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.border-\[\#c5a059\],
+.focus\:border-\[\#c5a059\]:focus,
+.hover\:border-\[\#c5a059\]:hover,
+.group:hover .group-hover\:border-\[\#c5a059\] {
+  border-color: var(--theme-accent) !important;
+  transition: border-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.fill-\[\#c5a059\] {
+  fill: var(--theme-accent) !important;
+  transition: fill 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.stroke-\[\#c5a059\] {
+  stroke: var(--theme-accent) !important;
+  transition: stroke 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.accent-\[\#c5a059\] {
+  accent-color: var(--theme-accent) !important;
+}
+
+/* Gradients that use the brand colors */
+.from-\[\#c5a059\] {
+  --tw-gradient-from: var(--theme-accent) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(var(--theme-accent-rgb), 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-from), var(--tw-gradient-to)) !important;
+  transition: --tw-gradient-from 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.via-\[\#c5a059\] {
+  --tw-gradient-to: rgba(var(--theme-accent-rgb), 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--theme-accent) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+.to-\[\#c5a059\] {
+  --tw-gradient-to: var(--theme-accent) var(--tw-gradient-to-position) !important;
+}
+
+.from-\[\#dfba74\] {
+  --tw-gradient-from: var(--theme-light) var(--tw-gradient-from-position) !important;
+}
+
+.via-\[\#dfba74\] {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--theme-light) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+.to-\[\#dfba74\] {
+  --tw-gradient-to: var(--theme-light) var(--tw-gradient-to-position) !important;
+}
+
+.hover\:from-\[\#dfba74\]:hover {
+  --tw-gradient-from: var(--theme-light) var(--tw-gradient-from-position) !important;
+}
+
+.hover\:to-\[\#c5a059\]:hover {
+  --tw-gradient-to: var(--theme-accent) var(--tw-gradient-to-position) !important;
+}
+
+/* Translucent opacity variants - Preserve transparency while dynamically adopting the hue */
+.bg-\[\#c5a059\]\/5 {
+  background-color: rgba(var(--theme-accent-rgb), 0.05) !important;
+  transition: background-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.bg-\[\#c5a059\]\/10 {
+  background-color: rgba(var(--theme-accent-rgb), 0.10) !important;
+  transition: background-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.bg-\[\#c5a059\]\/15 {
+  background-color: rgba(var(--theme-accent-rgb), 0.15) !important;
+  transition: background-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.bg-\[\#c5a059\]\/20 {
+  background-color: rgba(var(--theme-accent-rgb), 0.20) !important;
+  transition: background-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.border-\[\#c5a059\]\/20 {
+  border-color: rgba(var(--theme-accent-rgb), 0.20) !important;
+  transition: border-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.border-\[\#c5a059\]\/30 {
+  border-color: rgba(var(--theme-accent-rgb), 0.30) !important;
+  transition: border-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.border-\[\#c5a059\]\/40 {
+  border-color: rgba(var(--theme-accent-rgb), 0.40) !important;
+  transition: border-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.border-\[\#c5a059\]\/50 {
+  border-color: rgba(var(--theme-accent-rgb), 0.50) !important;
+  transition: border-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.border-\[\#c5a059\]\/60 {
+  border-color: rgba(var(--theme-accent-rgb), 0.60) !important;
+  transition: border-color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.text-\[\#c5a059\]\/40 {
+  color: rgba(var(--theme-accent-rgb), 0.40) !important;
+  transition: color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.text-\[\#c5a059\]\/70 {
+  color: rgba(var(--theme-accent-rgb), 0.70) !important;
+  transition: color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.text-\[\#c5a059\]\/80 {
+  color: rgba(var(--theme-accent-rgb), 0.80) !important;
+  transition: color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a, input, select, textarea, [role="button"] {
+  touch-action: manipulation;
+}
+
+body.modal-open {
+  overscroll-behavior: contain;
+}
+
+/* Custom sleek luxury scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* Instagram-style heart pop & burst */
+@keyframes heartPop {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.45);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-heart-pop {
+  animation: heartPop 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes heartBurstRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.animate-heart-burst {
+  animation: heartBurstRing 0.7s ease-out forwards;
+}
+
+/* UI Entrance & Drawer Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Luxury Editorial Serif for prestigious descriptions */
+.font-luxury-serif {
+  font-family: var(--font-cormorant), "Playfair Display", "Didot", "Bodoni MT", Georgia, serif;
+}
+
+/* Respect user reduced-motion preference without destroying functional UI interactions */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+  .animate-spin,
+  .animate-ping {
+    animation-duration: 2s !important;
+  }
+}
