@@ -1,0 +1,26 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Heavy original source images — only optimised .webp and .avif are committed
+*.jpg
+*.jpeg
+*.png
+*.PNG
+
+# Diagnostic & test scripts
+*.mjs
+
+# Lighthouse audit dumps
+lh-*.json
+
+# OS & editor junk
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
