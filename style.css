@@ -1257,29 +1257,42 @@ body.scroll-locked {
   scale: 1;
 }
 
-.mobile-br {
+.mobile-br,
+.mobile-headline-br {
   display: none;
 }
 
 @media (max-width: 768px) {
-  .mobile-br {
+  .mobile-br,
+  .mobile-headline-br {
     display: block !important;
   }
+  .stack-section#hero,
   #hero {
     height: 100svh !important;
-    min-height: 580px !important;
-    max-height: 940px !important;
+    min-height: 560px !important;
+    max-height: 100svh !important;
     position: relative !important;
     overflow: hidden !important;
     background-color: #0E0D0C !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
   }
 
   #hero-section {
     height: 100% !important;
     min-height: 100% !important;
     padding: 0 !important;
+    margin: 0 !important;
     position: relative !important;
     overflow: hidden !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    border: none !important;
   }
 
   #stage-athlete {
@@ -1289,49 +1302,41 @@ body.scroll-locked {
     overflow: hidden !important;
   }
 
+  /* ── FULL SCREEN VERTICAL STACK FOR MOBILE HERO SLIDE ── */
   .hero-slide {
-    flex-direction: row !important;
-    align-items: stretch !important;
-    justify-content: space-between !important;
-    padding: 0 !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 64px 14px 76px 14px !important; /* Top clears 60px header; bottom clears floating stats bar */
     overflow: hidden !important;
     height: 100% !important;
     width: 100% !important;
     position: absolute !important;
     inset: 0 !important;
+    box-sizing: border-box !important;
   }
 
-  /* ── LEFT COLUMN ── text sits top-left, buttons + pagination at bottom ── */
+  /* hero-left children become direct items in the hero-slide flex column */
   .hero-left {
-    position: absolute !important;
-    left: 10px !important;
-    top: 72px !important;
-    bottom: 90px !important;
-    width: 48% !important;
-    max-width: 195px !important;
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    gap: 0 !important;
-    padding: 0 !important;
-    z-index: 10 !important;
-    background: transparent !important;
-    border-radius: 0 !important;
-    pointer-events: auto !important;
-    overflow: visible !important;
+    display: contents !important;
   }
 
+  /* ── 1. HEADLINE (Top, Centered) ── */
   .hero-headline {
-    font-size: clamp(28px, 8.5vw, 38px) !important;
+    order: 1 !important;
+    font-size: clamp(28px, 7.8vw, 36px) !important;
     font-family: 'Bebas Neue', sans-serif !important;
-    line-height: 0.93 !important;
-    letter-spacing: 0.02em !important;
+    line-height: 0.95 !important;
+    letter-spacing: 0.025em !important;
     font-weight: 800 !important;
     color: #FFFFFF !important;
-    margin: 0 0 10px 0 !important;
+    text-align: center !important;
+    margin: 2px auto 4px auto !important;
     text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9) !important;
     flex-shrink: 0 !important;
+    width: 100% !important;
+    max-width: 340px !important;
+    z-index: 10 !important;
   }
 
   .hero-headline .accent {
@@ -1340,48 +1345,176 @@ body.scroll-locked {
     transition: color 0.6s ease;
   }
 
+  /* ── 2. PARAGRAPH COMPLETELY REMOVED FROM ALL SMALL SCREENS ── */
   .hero-desc {
-    font-size: clamp(14px, 4vw, 16px) !important;
-    line-height: 1.5 !important;
-    color: rgba(243, 240, 233, 0.92) !important;
-    margin: 0 0 auto 0 !important;
-    display: block !important;
-    overflow: visible !important;
-    -webkit-line-clamp: unset !important;
-    max-width: 100% !important;
-    word-wrap: break-word !important;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9) !important;
-    flex-shrink: 1 !important;
+    display: none !important;
   }
 
+  /* ── 3. HERO RIGHT: Centered Athlete & Glass Base ── */
+  .hero-right {
+    order: 2 !important;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 380px !important;
+    flex: 1 1 auto !important;
+    min-height: 220px !important;
+    max-height: calc(100% - 215px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    pointer-events: none !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+    z-index: 4 !important;
+  }
+
+  /* Centered ambient glow behind the athlete */
+  .hero-right::before {
+    content: "" !important;
+    position: absolute !important;
+    width: 220px !important;
+    height: 220px !important;
+    border-radius: 50% !important;
+    background: radial-gradient(circle, var(--slide-glow, var(--primary-glow)) 0%, rgba(0, 0, 0, 0) 70%) !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    filter: blur(40px) !important;
+    opacity: 0.80 !important;
+    transition: background 0.8s ease !important;
+  }
+
+  /* Symmetrical centered luxury glass base behind the athlete */
+  .athlete-glass-panel {
+    position: absolute !important;
+    width: 78% !important;
+    height: 84% !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) skewX(-8deg) translateZ(0) !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.015) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 22px !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 25px var(--slide-ambient, var(--theme-ambient)) !important;
+    z-index: 2 !important;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
+    mask-image: linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
+  }
+
+  /* Centered Athlete Frame */
+  .athlete-frame {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    max-width: none !important;
+    z-index: 3 !important;
+    overflow: visible !important;
+  }
+
+  .athlete-img {
+    height: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    max-width: 96% !important;
+    object-fit: contain !important;
+    object-position: bottom center !important;
+    display: block !important;
+    margin: 0 auto !important;
+    transform: none !important;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 80%, rgba(0, 0, 0, 0.7) 90%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
+    mask-image: linear-gradient(to bottom, #000 0%, #000 80%, rgba(0, 0, 0, 0.7) 90%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
+  }
+
+  /* Slide 0: athletic.webp (centered on glass card) */
+  .athlete-img-0 {
+    height: 106% !important;
+    max-height: 106% !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: translateY(-2px) !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+  }
+
+  /* Slide 1: hero1.webp (centered on glass card, Calvin Klein waist) */
+  .athlete-img-1 {
+    height: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+  }
+
+  .hero2-frame {
+    width: 100% !important;
+  }
+
+  /* Slide 2: hero2.webp (centered on glass card) */
+  .athlete-img-2 {
+    height: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+  }
+
+  /* ── 4. BUTTONS (Centered directly below athlete) ── */
   .hero-buttons {
+    order: 3 !important;
     display: flex !important;
     flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
     gap: 8px !important;
     width: 100% !important;
-    max-width: 160px !important;
-    margin: 12px 0 10px 0 !important;
+    max-width: 320px !important;
+    margin: 3px auto 5px auto !important;
     flex-shrink: 0 !important;
+    z-index: 10 !important;
   }
 
   .hero-btn-primary {
     width: 100% !important;
-    height: 40px !important;
+    height: 44px !important;
     border-radius: 9999px !important;
     background: var(--slide-accent, var(--primary)) !important;
     color: #0E0D0C !important;
-    font-size: 11.5px !important;
+    font-size: 13.5px !important;
     font-weight: 700 !important;
-    letter-spacing: 0.03em !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    letter-spacing: 0.02em !important;
     text-transform: none !important;
     white-space: nowrap !important;
-    padding: 0 12px !important;
+    padding: 0 16px !important;
     border: none !important;
     text-align: center !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 4px !important;
+    gap: 8px !important;
     box-shadow: 0 4px 20px var(--slide-glow, var(--primary-glow)) !important;
     cursor: pointer !important;
     touch-action: manipulation !important;
@@ -1396,17 +1529,18 @@ body.scroll-locked {
 
   .hero-btn-secondary {
     width: 100% !important;
-    height: 38px !important;
+    height: 40px !important;
     border-radius: 9999px !important;
-    background: rgba(18, 17, 16, 0.65) !important;
-    border: 1.2px solid var(--slide-border, var(--border-primary)) !important;
+    background: rgba(18, 17, 16, 0.72) !important;
+    border: 1.2px solid rgba(255, 255, 255, 0.22) !important;
     color: #FFFFFF !important;
-    font-size: 11.5px !important;
+    font-size: 13px !important;
     font-weight: 600 !important;
-    letter-spacing: 0.03em !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    letter-spacing: 0.02em !important;
     text-transform: none !important;
     white-space: nowrap !important;
-    padding: 0 12px !important;
+    padding: 0 16px !important;
     text-align: center !important;
     display: flex !important;
     align-items: center !important;
@@ -1424,19 +1558,22 @@ body.scroll-locked {
     background: rgba(255, 255, 255, 0.08) !important;
   }
 
-  /* ── MOBILE PAGINATION: arrows + dots row, below About Us ── */
+  /* ── 5. MOBILE HERO PAGINATION (Centered below About Us) ── */
   .desktop-hero-pagination {
     display: none !important;
   }
 
   .mobile-hero-pagination {
+    order: 4 !important;
     display: flex !important;
     align-items: center !important;
-    gap: 10px !important;
-    margin: 0 0 0 9px !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin: 0 auto 3px auto !important;
     height: 32px !important;
     z-index: 15 !important;
     flex-shrink: 0 !important;
+    width: 100% !important;
   }
 
   .mobile-hero-pagination .hero-arrow-btn {
@@ -1446,7 +1583,7 @@ body.scroll-locked {
     min-width: 32px !important;
     min-height: 32px !important;
     border-radius: 50% !important;
-    background: rgba(255, 255, 255, 0.10) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
     border: 1px solid rgba(255, 255, 255, 0.20) !important;
     color: #FFFFFF !important;
     align-items: center !important;
@@ -1465,15 +1602,16 @@ body.scroll-locked {
   }
 
   .mobile-hero-pagination .hero-slide-bars {
-    gap: 6px !important;
+    gap: 7px !important;
     display: flex !important;
     align-items: center !important;
+    justify-content: center !important;
   }
 
   .mobile-hero-pagination .slide-progress-bar {
-    width: 24px !important;
-    height: 24px !important;
-    min-width: 24px !important;
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
     background: transparent !important;
     padding: 0 !important;
     border: none !important;
@@ -1491,8 +1629,8 @@ body.scroll-locked {
 
   .mobile-hero-pagination .slide-progress-bar .progress-fill {
     display: block !important;
-    width: 7px !important;
-    height: 7px !important;
+    width: 6px !important;
+    height: 6px !important;
     border-radius: 50% !important;
     background: rgba(255, 255, 255, 0.35) !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -1505,165 +1643,25 @@ body.scroll-locked {
     box-shadow: 0 0 10px var(--slide-glow, var(--primary-glow)) !important;
   }
 
-  /* ── RIGHT COLUMN: glass + athlete image ── */
-  .hero-right {
-    position: absolute !important;
-    right: 0 !important;
-    top: 60px !important;
-    bottom: 90px !important;
-    width: 62% !important;
-    height: auto !important;
-    z-index: 5 !important;
-    display: flex !important;
-    align-items: flex-end !important;
-    justify-content: center !important;
-    pointer-events: none !important;
-    margin: 0 !important;
-    overflow: visible !important;
-  }
-
-  .hero-right::before {
-    content: "" !important;
-    position: absolute !important;
-    width: 220px !important;
-    height: 240px !important;
-    border-radius: 50% !important;
-    background: radial-gradient(circle, var(--slide-glow, var(--primary-glow)) 0%, rgba(0, 0, 0, 0) 70%) !important;
-    top: 10% !important;
-    right: 5% !important;
-    pointer-events: none !important;
-    z-index: 1 !important;
-    filter: blur(40px) !important;
-    opacity: 0.85 !important;
-    transition: background 0.8s ease !important;
-  }
-
-
-
-  .athlete-glass-panel {
-    position: absolute !important;
-    width: 92% !important;
-    height: 92% !important;
-    top: 4% !important;
-    bottom: 4% !important;
-    right: -4% !important;
-    left: auto !important;
-    transform: translateX(-20px) skewX(-10deg) translateZ(0) !important;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
-    border: none !important;
-    border-radius: 20px !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 25px var(--slide-ambient, var(--theme-ambient)) !important;
-    z-index: 2 !important;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, #000 38%), linear-gradient(to bottom, #000 0%, #000 76%, rgba(0, 0, 0, 0.85) 86%, rgba(0, 0, 0, 0.25) 95%, transparent 100%) !important;
-    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, #000 38%), linear-gradient(to bottom, #000 0%, #000 76%, rgba(0, 0, 0, 0.85) 86%, rgba(0, 0, 0, 0.25) 95%, transparent 100%) !important;
-    -webkit-mask-composite: source-in !important;
-    mask-composite: intersect !important;
-  }
-
-  .athlete-frame {
-    position: absolute !important;
-    top: 2% !important;
-    bottom: 4% !important;
-    left: 38% !important;
-    right: auto !important;
-    width: 95% !important;
-    height: 94% !important;
-    transform: translateX(-50%) !important;
-    display: flex !important;
-    align-items: flex-end !important;
-    justify-content: center !important;
-    max-width: none !important;
-    z-index: 3 !important;
-    overflow: visible !important;
-  }
-
-  .athlete-img {
-    height: 90% !important;
-    max-height: 90% !important;
-    width: auto !important;
-    max-width: none !important;
-    object-fit: contain !important;
-    object-position: bottom center !important;
-    display: block !important;
-    margin: 0 auto !important;
-    transform: none !important;
-    /* Base: left fade + bottom blur fade for slide 3 */
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, #000 38%), linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
-    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, #000 38%), linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
-    -webkit-mask-composite: source-in !important;
-    mask-composite: intersect !important;
-  }
-
-  /* Slide 0: athletic.png */
-  .athlete-img-0 {
-    height: 120% !important;
-    max-height: 120% !important;
-    width: auto !important;
-    max-width: none !important;
-    transform: translateX(-8px) !important;
-    clip-path: none !important;
-    -webkit-clip-path: none !important;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.28) 26%, rgba(0,0,0,0.8) 44%, #000 58%), linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
-    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.28) 26%, rgba(0,0,0,0.8) 44%, #000 58%), linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
-    -webkit-mask-composite: source-in !important;
-    mask-composite: intersect !important;
-  }
-
-  /* Slide 1: hero1.png */
-  .athlete-img-1 {
-    height: 98% !important;
-    max-height: 98% !important;
-    width: auto !important;
-    max-width: none !important;
-    transform: translateX(-4px) !important;
-    clip-path: none !important;
-    -webkit-clip-path: none !important;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.28) 26%, rgba(0,0,0,0.8) 44%, #000 58%, #000 78%, rgba(0,0,0,0.5) 86%, transparent 94%), linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
-    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.28) 26%, rgba(0,0,0,0.8) 44%, #000 58%, #000 78%, rgba(0,0,0,0.5) 86%, transparent 94%), linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
-    -webkit-mask-composite: source-in !important;
-    mask-composite: intersect !important;
-  }
-
-  .hero2-frame {
-    width: 100% !important;
-  }
-
-  /* Slide 2: hero2.png */
-  .athlete-img-2 {
-    height: 98% !important;
-    max-height: 98% !important;
-    width: auto !important;
-    max-width: none !important;
-    transform: translateX(10px) !important;
-    clip-path: none !important;
-    -webkit-clip-path: none !important;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 22%, rgba(0,0,0,0.85) 38%, #000 50%, #000 76%, rgba(0,0,0,0.5) 84%, transparent 92%), linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
-    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.35) 22%, rgba(0,0,0,0.85) 38%, #000 50%, #000 76%, rgba(0,0,0,0.5) 84%, transparent 92%), linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
-    -webkit-mask-composite: source-in !important;
-    mask-composite: intersect !important;
-  }
-
   /* In-slide desktop stats strip is hidden on mobile to avoid duplication */
   .hero-slide .hero-stats-strip {
     display: none !important;
   }
 
-  /* Bottom Stats Bar: Spans full width across mobile viewport */
+  /* ── 6. BOTTOM STATS BAR: Docked at bottom of viewport ── */
   .hero-mobile-stats-bar {
     display: flex !important;
     position: absolute !important;
     bottom: 12px !important;
-    left: 12px !important;
-    right: 12px !important;
-    width: auto !important;
-    max-width: calc(100% - 24px) !important;
-    height: 60px !important;
-    min-height: 60px !important;
+    left: 14px !important;
+    right: 14px !important;
+    width: calc(100% - 28px) !important;
+    max-width: calc(100% - 28px) !important;
+    height: 56px !important;
+    min-height: 56px !important;
     box-sizing: border-box !important;
     margin: 0 !important;
-    padding: 4px 6px !important;
+    padding: 3px 4px !important;
     background: rgba(16, 15, 14, 0.95) !important;
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
@@ -1750,6 +1748,12 @@ body.scroll-locked {
     margin-top: 1px !important;
     line-height: 1.1 !important;
     white-space: nowrap !important;
+  }
+
+  /* WhatsApp button positioned cleanly above the bottom stats bar */
+  .floating-whatsapp-wrap {
+    bottom: 78px !important;
+    right: 14px !important;
   }
 }
 

@@ -256,6 +256,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function heroStart() {
     clearTimeout(heroTimer1);
     clearTimeout(heroTimer2);
+    if (new URLSearchParams(window.location.search).get('stage') === 'athlete') {
+      goStage('athlete');
+      return;
+    }
     goStage('logo');
     // Logo appears permanently for 3 full seconds before transitioning
     heroTimer1 = setTimeout(() => goStage('move'), 3000);
@@ -299,7 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
       stageLogo.classList.add('hidden-logo');
       unlockScroll();
       stageAthlete.classList.add('active');
-      goToHeroSlide(0, 'init');
+      const slideParam = parseInt(new URLSearchParams(window.location.search).get('slide'), 10);
+      const initSlide = (!isNaN(slideParam) && slideParam >= 0 && slideParam <= 2) ? slideParam : 0;
+      goToHeroSlide(initSlide, 'init');
       startHeroSlideTimer(HERO_SLIDE_DURATION);
     }
   }
