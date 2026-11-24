@@ -1495,26 +1495,26 @@ body.scroll-locked {
     mask-image: linear-gradient(to bottom, #000 0%, #000 80%, rgba(0, 0, 0, 0.7) 90%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
   }
 
-  /* Slide 0: athletic.webp (centered on glass card, upper length slightly increased upwards) */
+  /* Slide 0: athletic.webp (centered on glass card, perfectly balanced height) */
   .athlete-img-0 {
-    height: 119% !important;
-    max-height: 119% !important;
+    height: 116% !important;
+    max-height: 116% !important;
     width: auto !important;
     max-width: none !important;
     transform-origin: bottom center !important;
-    transform: scale(1.08) translateY(-4px) !important;
+    transform: scale(1.07) translateY(-2px) !important;
     clip-path: none !important;
     -webkit-clip-path: none !important;
   }
 
-  /* Slide 1: hero1.webp (centered on glass card, Calvin Klein waist, upper length reduced a bit) */
+  /* Slide 1: hero1.webp (centered on glass card, Calvin Klein waist, perfectly balanced height) */
   .athlete-img-1 {
-    height: 99% !important;
-    max-height: 99% !important;
+    height: 101.5% !important;
+    max-height: 101.5% !important;
     width: auto !important;
     max-width: none !important;
     transform-origin: bottom center !important;
-    transform: scale(0.985) translateY(2px) !important;
+    transform: scale(1.01) translateY(0) !important;
     clip-path: none !important;
     -webkit-clip-path: none !important;
   }
