@@ -1178,11 +1178,11 @@ body.scroll-locked {
   bottom: 5%;
   left: 12.5%;
   width: 75%;
-  background: linear-gradient(135deg, rgba(18, 16, 15, 0.74) 0%, rgba(10, 9, 8, 0.88) 100%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(201, 164, 106, 0.20);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 60%, rgba(0, 0, 0, 0.20) 100%);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.35);
   transform: skewX(-15deg) translateZ(0);
   -webkit-transform: skewX(-15deg) translateZ(0);
   transform-origin: center center;
@@ -1371,10 +1371,10 @@ body.scroll-locked {
   /* ── 1. HEADLINE (Top, Centered, Strictly 2 Lines Max) ── */
   .hero-headline {
     order: 1 !important;
-    font-size: clamp(24px, 6.8vw, 32px) !important;
+    font-size: clamp(28px, 7.8vw, 36px) !important;
     font-family: 'Bebas Neue', sans-serif !important;
-    line-height: 0.96 !important;
-    letter-spacing: 0.025em !important;
+    line-height: 0.95 !important;
+    letter-spacing: 0.03em !important;
     font-weight: 800 !important;
     color: #FFFFFF !important;
     text-align: center !important;
@@ -1439,22 +1439,24 @@ body.scroll-locked {
     transition: background 0.8s ease !important;
   }
 
-  /* Symmetrical centered luxury glass base behind the athlete (Dark smoked glass) */
+  /* Symmetrical centered luxury glass base behind the athlete (Translucent Frosted Glassmorphism) */
   .athlete-glass-panel {
     position: absolute !important;
     width: 78% !important;
+    max-width: 285px !important;
     height: 84% !important;
     top: 50% !important;
     left: 50% !important;
     right: auto !important;
     bottom: auto !important;
-    transform: translate(-50%, -50%) skewX(-8deg) translateZ(0) !important;
-    background: linear-gradient(135deg, rgba(18, 16, 15, 0.74) 0%, rgba(10, 9, 8, 0.88) 100%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    transform-origin: 50% 100% !important;
+    transform: translate(-50%, -50%) skewX(-3.5deg) translateZ(0) !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 60%, rgba(0, 0, 0, 0.20) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
     border-radius: 22px !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75), 0 0 25px var(--slide-ambient, var(--theme-ambient)), inset 0 1px 0 rgba(201, 164, 106, 0.20) !important;
+    backdrop-filter: blur(24px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.35), inset 0 -1px 1px rgba(0, 0, 0, 0.20), 0 0 25px var(--slide-ambient, var(--theme-ambient)) !important;
     z-index: 2 !important;
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
     mask-image: linear-gradient(to bottom, #000 0%, #000 78%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.2) 96%, transparent 100%) !important;
@@ -1504,13 +1506,13 @@ body.scroll-locked {
     -webkit-clip-path: none !important;
   }
 
-  /* Slide 1: hero1.webp (centered on glass card, Calvin Klein waist) */
+  /* Slide 1: hero1.webp (centered on glass card, Calvin Klein waist, scaled a pinch) */
   .athlete-img-1 {
-    height: 100% !important;
-    max-height: 100% !important;
+    height: 104% !important;
+    max-height: 104% !important;
     width: auto !important;
     max-width: none !important;
-    transform: none !important;
+    transform: scale(1.035) translateY(0) !important;
     clip-path: none !important;
     -webkit-clip-path: none !important;
   }
@@ -1538,8 +1540,8 @@ body.scroll-locked {
     align-items: center !important;
     justify-content: center !important;
     gap: 7px !important;
-    width: 78% !important;
-    max-width: 270px !important;
+    width: 80% !important;
+    max-width: 285px !important;
     margin: 3px auto 5px auto !important;
     flex-shrink: 0 !important;
     z-index: 10 !important;
