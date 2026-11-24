@@ -853,7 +853,7 @@ body.scroll-locked {
 }
 
 #logo-subtext {
-  margin-top: -10px;
+  margin-top: -24px;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -868,7 +868,7 @@ body.scroll-locked {
 @media (min-width: 768px) {
   #logo-subtext {
     font-size: 22px;
-    margin-top: -18px;
+    margin-top: -34px;
   }
 }
 
@@ -1509,12 +1509,12 @@ body.scroll-locked {
 
   /* Slide 1: hero1.webp (centered on glass card, Calvin Klein waist, perfectly balanced height) */
   .athlete-img-1 {
-    height: 101.5% !important;
-    max-height: 101.5% !important;
+    height: 100.3% !important;
+    max-height: 100.3% !important;
     width: auto !important;
     max-width: none !important;
     transform-origin: bottom center !important;
-    transform: scale(1.01) translateY(0) !important;
+    transform: scale(1.002) translateY(0) !important;
     clip-path: none !important;
     -webkit-clip-path: none !important;
   }
